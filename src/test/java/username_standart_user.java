@@ -8,6 +8,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class username_standart_user extends env_target {
+   @Test
+   public void failed(){
+       //set driverlocation path
+       System.setProperty("webdriver.microsoft-edge.driver","F:\\QA Testing\\untitled\\src\\main\\resources\\msedgedriver.exe");
+       driver = new EdgeDriver();
+       //maximize driver
+       driver.manage().window().maximize();
+       //Set Url
+       driver.get(urlSwagLabs);
+
+       Duration duration = Duration.ofSeconds(10);
+       WebDriverWait wait = new WebDriverWait(driver, duration);
+
+       wait.until(
+               ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login-button\"]"))
+       );
+       //Login
+       driver.findElement(By.name("user-name")).sendKeys("standard_user");
+       driver.findElement(By.id("password")).sendKeys("secret_sauc");
+       driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+
+       wait.until(
+               ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]"))
+       );
+
+       driver.quit();
+   }
+
     @Test
     public void main(){
         //set driverlocation path
