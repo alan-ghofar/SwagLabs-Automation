@@ -63,6 +63,33 @@ public class Login extends env_target {
     }
 
     @Test
+    public void locked_out_user(){
+        //set driverlocation path
+        System.setProperty("webdriver.microsoft-edge.driver","F:\\QA Testing\\untitled\\src\\main\\resources\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        //maximize driver
+        driver.manage().window().maximize();
+        //Set Url
+        driver.get(urlSwagLabs);
+
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login-button\"]"))
+        );
+        driver.findElement(By.name("user-name")).sendKeys("locked_out_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3"))
+        );
+
+        driver.quit();
+    }
+
+    @Test
     public void fail(){
         //set driverlocation path
         System.setProperty("webdriver.microsoft-edge.driver","F:\\QA Testing\\untitled\\src\\main\\resources\\msedgedriver.exe");
