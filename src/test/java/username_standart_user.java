@@ -85,7 +85,7 @@ public class username_standart_user extends env_target {
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span"))
         );
 
-//        //Bottom remove product in dashboard inventory-item
+       //Bottom remove product in dashboard inventory-item
         driver.findElement(By.xpath("//*[@id=\"remove\"]")).click();
         wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
@@ -108,6 +108,7 @@ public class username_standart_user extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
         );
+
         //Input data information empty
         driver.findElement(By.xpath("//*[@id=\"continue\"]")).click();
         wait.until(
@@ -129,13 +130,36 @@ public class username_standart_user extends env_target {
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"checkout_complete_container\"]/h2"))
         );
 
+        //Back to shoping
+        driver.findElement(By.xpath("//*[@id=\"back-to-products\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
+        );
+
+        //Bottom add product in dashboard inventory
+        driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-backpack\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span"))
+        );
+
+        //Product in Cart
+        driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
+        );
 
         //Product remove from chart
-//        driver.findElement(By.xpath("//*[@id=\"remove-sauce-labs-backpack\"]")).click();
-//        wait.until(
-//                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
-//        );
+        driver.findElement(By.xpath("//*[@id=\"remove-sauce-labs-backpack\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
+        );
 
+        //Check Out Product
+        //Bug, because there is no product but can check out
+        driver.findElement(By.xpath("//*[@id=\"checkout\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
+        );
 
         driver.quit();
     }
