@@ -86,22 +86,55 @@ public class username_standart_user extends env_target {
         );
 
 //        //Bottom remove product in dashboard inventory-item
-//        driver.findElement(By.xpath("//*[@id=\"remove\"]")).click();
-//        wait.until(
-//                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
-//        );
+        driver.findElement(By.xpath("//*[@id=\"remove\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
+        );
 
-        //Product add in chart
+        //Bottom add product in dashboard inventory-item
+        driver.findElement(By.xpath("//*[@id=\"add-to-cart\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span"))
+        );
+
+        //Product in Cart
         driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).click();
         wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
         );
 
-        //Product remove from chart
-        driver.findElement(By.xpath("//*[@id=\"remove-sauce-labs-backpack\"]")).click();
+        //Check Out Product
+        driver.findElement(By.xpath("//*[@id=\"checkout\"]")).click();
         wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
         );
+        //Input data information empty
+        driver.findElement(By.xpath("//*[@id=\"continue\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[1]/div[4]/h3"))
+        );
+
+        //Input data information
+        driver.findElement(By.id("first-name")).sendKeys("alan");
+        driver.findElement(By.id("last-name")).sendKeys("ghofar");
+        driver.findElement(By.id("postal-code")).sendKeys("ads");
+        driver.findElement(By.xpath("//*[@id=\"continue\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))
+        );
+
+        //Finish
+        driver.findElement(By.xpath("//*[@id=\"finish\"]")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"checkout_complete_container\"]/h2"))
+        );
+
+
+        //Product remove from chart
+//        driver.findElement(By.xpath("//*[@id=\"remove-sauce-labs-backpack\"]")).click();
+//        wait.until(
+//                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"shopping_cart_container\"]/a"))
+//        );
 
 
         driver.quit();
