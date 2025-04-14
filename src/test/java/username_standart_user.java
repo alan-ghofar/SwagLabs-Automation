@@ -163,4 +163,68 @@ public class username_standart_user extends env_target {
 
         driver.quit();
     }
+
+    @Test
+    public void menu_bottom(){
+        //set driverlocation path
+        System.setProperty("webdriver.microsoft-edge.driver","F:\\QA Testing\\untitled\\src\\main\\resources\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        //maximize driver
+        driver.manage().window().maximize();
+        //Set Url
+        driver.get(urlSwagLabs);
+
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login-button\"]"))
+        );
+        //Login
+        driver.findElement(By.name("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"title\"]"))
+        );
+
+        //Inventory-Item
+        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"inventory_item_container\"]"))
+        );
+
+        //Menu bottom
+        driver.findElement(By.xpath("//*[@id=\"react-burger-menu-btn\"]")).click();
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"menu_button_container\"]"))
+        );
+
+        //All item side bar
+//        driver.findElement(By.xpath("//*[@id=\"inventory_sidebar_link\"]")).click();
+//
+//        wait.until(
+//                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"header_container\"]/div[2]"))
+//        );
+
+        //Menu bottom
+//        driver.findElement(By.xpath("//*[@id=\"react-burger-menu-btn\"]")).click();
+//
+//        wait.until(
+//                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"menu_button_container\"]"))
+//        );
+
+        //About side bar
+        driver.findElement(By.xpath("//*[@id=\"about_sidebar_link\"]")).click();
+
+        wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"__next\"]/div[3]/div/div/div[1]/div/div[1]/div[1]/h1"))
+        );
+
+        driver.quit();
+
+    }
+
 }
