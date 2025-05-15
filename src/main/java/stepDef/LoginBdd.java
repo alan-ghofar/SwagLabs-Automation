@@ -74,19 +74,18 @@ public class LoginBdd extends env_target {
         driver.findElement(By.id("password")).sendKeys(password);
     }
 
-    @Then("^User get verify login (.*)$")
+    @Then("^User verify login (.*)$")
     public void userVerifyLoginResult(String result) {
         Duration duration = Duration.ofSeconds(10);
         WebDriverWait wait = new WebDriverWait(driver, duration);
-        if(result == "true"){
+        if(result == "True"){
             wait.until(ExpectedConditions.or(
-                            ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"title\"]"))
-                    ));
-            driver.quit();
+                    ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"title\"]"))
+            ));
         } else if (result == "Failed") {
             wait.until(ExpectedConditions.or(
-                            ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3"))
-                    ));
+                    ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3"))
+            ));
         }
         driver.quit();
     }

@@ -9,6 +9,6 @@ Feature: Login With TTD
 
     Examples:
     |username| |password| |result|
-    |standard_user| |secret_sauce| |true|
+    |standard_user| |secret_sauce| |True|
     |invalidUsername| |secret_sauce| |Failed|
     |standard_user| |invalidPassword| |Failed|
